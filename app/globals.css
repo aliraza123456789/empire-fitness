@@ -1,0 +1,168 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --gold: #c9a24b;
+    --gold-hi: #f0d89b;
+    --ink: #08090a;
+    --nav-h: 76px;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    scroll-padding-top: var(--nav-h);
+    -webkit-text-size-adjust: 100%;
+  }
+
+  body {
+    @apply bg-ink text-bone font-sans antialiased;
+    /* very faint vertical rhythm borrowed from the reception slat wall */
+    background-image: repeating-linear-gradient(
+      90deg,
+      rgba(255, 255, 255, 0.012) 0px,
+      rgba(255, 255, 255, 0.012) 1px,
+      transparent 1px,
+      transparent 96px
+    );
+    overflow-x: hidden;
+  }
+
+  ::selection {
+    background: var(--gold);
+    color: #08090a;
+  }
+
+  /* Keyboard focus is gold and unmistakable; mouse clicks stay clean. */
+  :focus-visible {
+    outline: 2px solid var(--gold);
+    outline-offset: 3px;
+    border-radius: 2px;
+  }
+
+  h1, h2, h3 {
+    @apply font-display;
+    font-variation-settings: 'wdth' 85, 'wght' 700;
+    letter-spacing: -0.035em;
+    text-wrap: balance;
+  }
+
+  p {
+    text-wrap: pretty;
+  }
+
+  img {
+    max-width: 100%;
+  }
+}
+
+@layer components {
+  /* The brushed-gold lettering from the reception sign. */
+  .gold-leaf {
+    background: linear-gradient(
+      97deg,
+      #8a6b28 0%,
+      #c9a24b 26%,
+      #f0d89b 45%,
+      #c9a24b 60%,
+      #7e6024 100%
+    );
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    -webkit-text-fill-color: transparent;
+  }
+
+  /* Fluted slat panel — the building's signature surface. */
+  .slat-panel {
+    background-color: #14171a;
+    background-image: repeating-linear-gradient(
+      90deg,
+      rgba(255, 255, 255, 0.07) 0px,
+      rgba(255, 255, 255, 0.07) 1px,
+      rgba(0, 0, 0, 0.35) 2px,
+      rgba(0, 0, 0, 0.35) 4px,
+      rgba(255, 255, 255, 0.02) 5px,
+      rgba(255, 255, 255, 0.02) 9px
+    );
+  }
+
+  .hairline {
+    height: 1px;
+    background: linear-gradient(
+      90deg,
+      transparent,
+      rgba(201, 162, 75, 0.55) 18%,
+      rgba(240, 216, 155, 0.9) 50%,
+      rgba(201, 162, 75, 0.55) 82%,
+      transparent
+    );
+  }
+
+  .section {
+    @apply relative px-5 py-24 sm:px-8 md:py-32;
+  }
+
+  .shell {
+    @apply mx-auto w-full max-w-[1240px];
+  }
+
+  /* Buttons ------------------------------------------------- */
+  .btn {
+    @apply inline-flex min-h-[52px] items-center justify-center gap-2 px-7 text-[13px] font-semibold uppercase tracking-[0.16em] transition-all duration-300 ease-empire;
+  }
+
+  .btn-gold {
+    color: #0b0c0d;
+    background: linear-gradient(140deg, #f0d89b 0%, #c9a24b 48%, #a8853a 100%);
+    box-shadow: 0 14px 34px -18px rgba(201, 162, 75, 0.9);
+  }
+  .btn-gold:hover {
+    background: linear-gradient(140deg, #ffe9b8 0%, #d8b25c 48%, #b8934a 100%);
+    box-shadow: 0 18px 44px -16px rgba(201, 162, 75, 0.85);
+  }
+
+  .btn-ghost {
+    @apply text-bone;
+    border: 1px solid rgba(239, 234, 225, 0.22);
+    backdrop-filter: blur(6px);
+    background: rgba(8, 9, 10, 0.3);
+  }
+  .btn-ghost:hover {
+    border-color: rgba(201, 162, 75, 0.75);
+    color: #f0d89b;
+  }
+
+  .surface {
+    background: linear-gradient(180deg, rgba(34, 38, 42, 0.72) 0%, rgba(14, 16, 18, 0.9) 100%);
+    border: 1px solid rgba(239, 234, 225, 0.08);
+  }
+}
+
+@layer utilities {
+  .perspective {
+    perspective: 1200px;
+  }
+  .preserve-3d {
+    transform-style: preserve-3d;
+  }
+  /* Stops long body copy running to uncomfortable line lengths. */
+  .readable {
+    max-width: 62ch;
+  }
+}
+
+/* Anyone who asks for less motion gets a still, perfectly usable site. */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+}
